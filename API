@@ -1,0 +1,48 @@
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+@SpringBootApplication
+@RestController
+public class TradingApi {
+
+    // Trading logic and data storage
+
+    @GetMapping("/api/trading/buy")
+    public String buyStock(@RequestBody TradeRequest request) {
+        // Implement buy logic
+        return "Buy order executed";
+    }
+
+    @GetMapping("/api/trading/sell")
+    public String sellStock(@RequestBody TradeRequest request) {
+        // Implement sell logic
+        return "Sell order executed";
+    }
+
+    @PostMapping("/api/trading/init")
+    public void initTrading(@RequestBody TradingConfig config) {
+        // Initialize trading settings
+    }
+
+    public static void main(String[] args) {
+        SpringApplication.run(TradingApi.class, args);
+    }
+}
+
+class TradeRequest {
+    private String symbol;
+    private double price;
+    private double volume;
+    // Getters and setters
+}
+
+class TradingConfig {
+    private String apiKey;
+    private String apiSecret;
+    private String symbol;
+    // Getters and setters
+}
